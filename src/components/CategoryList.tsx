@@ -11,7 +11,7 @@ const CategoryList = () => {
         >
           <div className="relative bg-slate-100 w-full h-96">
             <Image
-              src="https://images.pexels.com/photos/21790287/pexels-photo-21790287/free-photo-of-jewelry-is-one-of-those-things-that-can-really-benefit-from-professional-photography.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+              src="https://images.pexels.com/photos/14466162/pexels-photo-14466162.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt=""
               fill
               sizes="20vw"
@@ -28,7 +28,7 @@ const CategoryList = () => {
         >
           <div className="relative bg-slate-100 w-full h-96">
             <Image
-              src="https://images.pexels.com/photos/21790287/pexels-photo-21790287/free-photo-of-jewelry-is-one-of-those-things-that-can-really-benefit-from-professional-photography.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+              src="https://images.pexels.com/photos/18075558/pexels-photo-18075558/free-photo-of-hoops-earrings-in-ear.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt=""
               fill
               sizes="20vw"
@@ -45,7 +45,7 @@ const CategoryList = () => {
         >
           <div className="relative bg-slate-100 w-full h-96">
             <Image
-              src="https://images.pexels.com/photos/21790287/pexels-photo-21790287/free-photo-of-jewelry-is-one-of-those-things-that-can-really-benefit-from-professional-photography.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+              src="https://images.pexels.com/photos/15064039/pexels-photo-15064039/free-photo-of-jewelry-blocks-in-a-gold-chain.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt=""
               fill
               sizes="20vw"
@@ -62,7 +62,7 @@ const CategoryList = () => {
         >
           <div className="relative bg-slate-100 w-full h-96">
             <Image
-              src="https://images.pexels.com/photos/21790287/pexels-photo-21790287/free-photo-of-jewelry-is-one-of-those-things-that-can-really-benefit-from-professional-photography.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+              src="https://images.pexels.com/photos/14111399/pexels-photo-14111399.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt=""
               fill
               sizes="20vw"
@@ -79,7 +79,7 @@ const CategoryList = () => {
         >
           <div className="relative bg-slate-100 w-full h-96">
             <Image
-              src="https://images.pexels.com/photos/21790287/pexels-photo-21790287/free-photo-of-jewelry-is-one-of-those-things-that-can-really-benefit-from-professional-photography.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+              src="https://images.pexels.com/photos/13160940/pexels-photo-13160940.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt=""
               fill
               sizes="20vw"
@@ -96,7 +96,7 @@ const CategoryList = () => {
         >
           <div className="relative bg-slate-100 w-full h-96">
             <Image
-              src="https://images.pexels.com/photos/21790287/pexels-photo-21790287/free-photo-of-jewelry-is-one-of-those-things-that-can-really-benefit-from-professional-photography.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+              src="https://images.pexels.com/photos/8656237/pexels-photo-8656237.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt=""
               fill
               sizes="20vw"
@@ -113,7 +113,7 @@ const CategoryList = () => {
         >
           <div className="relative bg-slate-100 w-full h-96">
             <Image
-              src="https://images.pexels.com/photos/21790287/pexels-photo-21790287/free-photo-of-jewelry-is-one-of-those-things-that-can-really-benefit-from-professional-photography.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+              src="https://images.pexels.com/photos/6716444/pexels-photo-6716444.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt=""
               fill
               sizes="20vw"
@@ -130,7 +130,7 @@ const CategoryList = () => {
         >
           <div className="relative bg-slate-100 w-full h-96">
             <Image
-              src="https://images.pexels.com/photos/21790287/pexels-photo-21790287/free-photo-of-jewelry-is-one-of-those-things-that-can-really-benefit-from-professional-photography.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+              src="https://images.pexels.com/photos/5370643/pexels-photo-5370643.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
               alt=""
               fill
               sizes="20vw"
