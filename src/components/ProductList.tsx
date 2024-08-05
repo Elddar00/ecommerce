@@ -23,7 +23,7 @@ const ProductList = async ({
     .limit(limit || PRODUCT_PER_PAGE)
     .find();
 
-  console.log(res.items[0].price);
+  // console.log(res.items[0].price);
 
   return (
     <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">
@@ -53,7 +53,7 @@ const ProductList = async ({
           </div>
           <div className="flex justify-between">
             <span className="font-medium">{product.name}</span>
-            <span className="font-semibold">${product.price?.price}</span>
+            <span className="font-semibold">RSD {product.price?.price}</span>
           </div>
           {product.additionalInfoSections && (
             <div
