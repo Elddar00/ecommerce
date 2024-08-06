@@ -53,7 +53,22 @@ const ProductList = async ({
           </div>
           <div className="flex justify-between">
             <span className="font-medium">{product.name}</span>
-            <span className="font-semibold">RSD {product.price?.price}</span>
+            <span className="font-semibold">
+              {product.price?.price === product.price?.discountedPrice ? (
+                <h2 className="font-medium text-xl">
+                  RSD {product.price?.price}
+                </h2>
+              ) : (
+                <div className="flex items-center gap-4">
+                  <h3 className="text-xl text-gray-500 line-through">
+                    RSD {product.price?.price}
+                  </h3>
+                  <h2 className="font-medium text-xl">
+                    RSD {product.price?.discountedPrice}
+                  </h2>
+                </div>
+              )}
+            </span>
           </div>
           {product.additionalInfoSections && (
             <div
