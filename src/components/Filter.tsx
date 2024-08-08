@@ -1,6 +1,6 @@
 "use client";
-
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import React from "react";
 
 const Filter = () => {
   const pathname = usePathname();
@@ -50,11 +50,11 @@ const Filter = () => {
           onChange={handleFilterChange}
         >
           <option>Category</option>
-          <option value="">New Arrival</option>
-          <option value="">Popular</option>
+          <option value="new">New Arrival</option>
+          <option value="popular">Popular</option>
         </select>
         <select
-          name=""
+          name="filters"
           id=""
           className="py-2 px-4 rounded-2xl text-xs font-medium bg-[#EBEDED]"
         >
@@ -71,8 +71,8 @@ const Filter = () => {
           <option>Sort By</option>
           <option value="asc price">Price (low to high)</option>
           <option value="desc price">Price (high to low)</option>
-          <option value="asc lastUpdated">Newest</option>
-          <option value="desc lastUpdated">Oldest</option>
+          <option value="desc lastUpdated">Newest</option>
+          <option value="asc lastUpdated">Oldest</option>
         </select>
       </div>
     </div>
