@@ -48,7 +48,7 @@ const OrderPage = async ({ params }: { params: { id: string } }) => {
           <span>{order.status}</span>
         </div>
         <div className="">
-          <span className="font-medium">Delivery Address</span>
+          <span className="font-medium">Delivery Address: </span>
           <span>
             {order.billingInfo?.address?.addressLine1 + " "}
             {order.billingInfo?.address?.city}
