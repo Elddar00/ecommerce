@@ -15,9 +15,6 @@ const Add = ({
 }) => {
   const [quantity, setQuantity] = useState(1);
 
-  // Temp solution !!
-  // const stock = 4;
-
   const handleQuantity = (type: "i" | "d") => {
     if (type === "d" && quantity > 1) {
       setQuantity((prev) => prev - 1);
@@ -41,6 +38,7 @@ const Add = ({
             <button
               className="cursor-pointer text-xl"
               onClick={() => handleQuantity("d")}
+              disabled={quantity <= 1}
             >
               -
             </button>
@@ -48,6 +46,7 @@ const Add = ({
             <button
               className="cursor-pointer text-xl"
               onClick={() => handleQuantity("i")}
+              disabled={quantity >= stockNumber}
             >
               +
             </button>
@@ -58,13 +57,14 @@ const Add = ({
             <div className="text-xs">
               Only <span className="text-orange-500">{stockNumber} items</span>{" "}
               left!
-              <br /> {"Dont't"} miss it!
+              <br /> {"Don't"} miss it!
             </div>
           )}
         </div>
         <button
           onClick={() => addItem(wixClient, productId, variantId, quantity)}
           className="w-36 text-sm rounded-3xl ring-1 ring-boja text-boja py-2 px-4 hover:bg-boja hover:text-white disabled:cursor-not-allowed disabled:bg-pink-200 disabled:text-white disabled:ring-none"
+          disabled={stockNumber < 1}
         >
           Add to Cart
         </button>
