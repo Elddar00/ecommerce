@@ -2,21 +2,46 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import CartModal from "./CartModal";
+import { useCartStore } from "@/hooks/useCartStore";
+import { useWixClient } from "@/hooks/useWixClient";
 
 const Menu = () => {
   const [open, setOpen] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const { cart, counter, getCart } = useCartStore();
+  const wixClient = useWixClient();
+
+  useEffect(() => {
+    getCart(wixClient);
+  }, [wixClient, getCart]);
 
   return (
-    <div>
-      <Image
-        src="/menu.png"
-        alt=""
-        width={28}
-        height={28}
-        className="cursor-pointer"
-        onClick={() => setOpen((prev) => !prev)}
-      />
+    <div className="relative">
+      {isCartOpen && <CartModal />}
+
+      <div className="flex justify-between items-center gap-6">
+        <div
+          className="relative cursor-pointer"
+          onClick={() => setIsCartOpen((prev) => !prev)}
+        >
+          <Image src="/cart.png" alt="Cart" width={22} height={22} />
+          <div className="absolute -top-4 -right-4 w-6 h-6 bg-red-500 rounded-full text-white text-sm flex items-center justify-center">
+            {counter}
+          </div>
+        </div>
+        <Image
+          src="/menu.png"
+          alt="Menu"
+          width={28}
+          height={28}
+          className="cursor-pointer"
+          onClick={() => setOpen((prev) => !prev)}
+        />
+      </div>
+
       {open && (
         <div className="absolute bg-black text-white left-0 top-20 w-full h-[calc(100vh-80px)] flex flex-col items-center justify-center gap-8 text-xl z-20">
           <Link href="/">Homepage</Link>
@@ -25,7 +50,7 @@ const Menu = () => {
           <Link href="/">About</Link>
           <Link href="/">Contact</Link>
           <Link href="/">Logout</Link>
-          <Link href="/">Cart(1)</Link>
+          <Link href="/">Cart({counter})</Link>
         </div>
       )}
     </div>
