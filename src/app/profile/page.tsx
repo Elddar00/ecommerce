@@ -11,7 +11,7 @@ const ProfilePage = async () => {
     fieldsets: [members.Set.FULL],
   });
 
-  console.log(user);
+  // console.log(user);
 
   if (!user.member?.contactId) {
     return <div className="text-center mt-8">Not logged in!</div>;
@@ -23,7 +23,7 @@ const ProfilePage = async () => {
     },
   });
 
-  console.log(orderRes);
+  // console.log(orderRes);
 
   return (
     <div className="flex flex-col md:flex-row gap-24 md:h-[calc(100vh-180px)] items-center px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64">
