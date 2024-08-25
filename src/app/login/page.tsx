@@ -2,7 +2,7 @@
 
 import { useWixClient } from "@/hooks/useWixClient";
 import { LoginState } from "@wix/sdk";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 
@@ -16,17 +16,7 @@ enum MODE {
 const LoginPage = () => {
   const wixClient = useWixClient();
   const router = useRouter();
-
-  const isLoggedIn = wixClient.auth.loggedIn();
-
-  // console.log(isLoggedIn);
-
-  if (isLoggedIn) {
-    router.push("/");
-  }
-
   const [mode, setMode] = useState(MODE.LOGIN);
-
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -34,6 +24,17 @@ const LoginPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
+
+  useEffect(() => {
+    // Check login status and redirect if already logged in
+    const checkLoginStatus = async () => {
+      if (wixClient.auth.loggedIn()) {
+        router.push("/");
+      }
+    };
+
+    checkLoginStatus();
+  }, [wixClient, router]);
 
   const formTitle =
     mode === MODE.LOGIN
@@ -94,7 +95,7 @@ const LoginPage = () => {
 
       switch (response?.loginState) {
         case LoginState.SUCCESS:
-          setMessage("Succesfull! You are being redirected.");
+          setMessage("Successful! You are being redirected.");
           const tokens = await wixClient.auth.getMemberTokensForDirectLogin(
             response.data.sessionToken!
           );
@@ -120,10 +121,13 @@ const LoginPage = () => {
           } else {
             setError("Something went wrong :( ");
           }
+          break;
         case LoginState.EMAIL_VERIFICATION_REQUIRED:
           setMode(MODE.EMAIL_VERIFICATION);
+          break;
         case LoginState.OWNER_APPROVAL_REQUIRED:
           setMessage("Your account is pending approval");
+          break;
         default:
           break;
       }
