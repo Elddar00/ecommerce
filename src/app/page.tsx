@@ -8,7 +8,7 @@ import { useWixClient } from "@/hooks/useWixClient";
 import { wixClientServer } from "@/lib/wixClientServer";
 import { Suspense, useContext, useEffect } from "react";
 
-const HomePage = async () => {
+const HomePage = () => {
   // const wixClient = useWixClient();
 
   // useEffect(() => {
