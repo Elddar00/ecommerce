@@ -3,7 +3,7 @@ import { currentCart } from "@wix/ecom";
 import { WixClient } from "@/context/wixContext";
 
 type CartState = {
-  cart: currentCart.Cart;
+  cart: currentCart.Cart | null;
   isLoading: boolean;
   counter: number;
   getCart: (wixClient: WixClient) => void;
@@ -33,9 +33,16 @@ export const useCartStore = create<CartState>((set) => ({
   counter: 0,
   getCart: async (wixClient) => {
     try {
+      const isLoggedIn = await wixClient.auth.loggedIn(); // Provera da li je korisnik ulogovan
+      if (!isLoggedIn) {
+        set({ isLoading: false, cart: null, counter: 0 });
+        console.log("User is not logged in. Skipping cart fetch.");
+        return;
+      }
+
       const cart = await wixClient.currentCart.getCurrentCart();
       set({
-        cart: cart || [],
+        cart: null,
         isLoading: false,
         counter: cart?.lineItems.length || 0,
       });
@@ -59,7 +66,7 @@ export const useCartStore = create<CartState>((set) => ({
     });
 
     set({
-      cart: response.cart,
+      cart: null,
       counter: response.cart?.lineItems.length,
       isLoading: false,
     });
@@ -71,7 +78,7 @@ export const useCartStore = create<CartState>((set) => ({
     );
 
     set({
-      cart: response.cart,
+      cart: null,
       counter: response.cart?.lineItems.length,
       isLoading: false,
     });
