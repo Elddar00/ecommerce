@@ -43,9 +43,9 @@ const HomePage = () => {
         <h1 className="text-2xl  px-4 md:px-8 xl:px-32 2xl:px-64 mb-12">
           Categories
         </h1>
-        <Suspense fallback={"loading"}>
+        {/* <Suspense fallback={"loading"}>
           <CategoryList />
-        </Suspense>
+        </Suspense> */}
       </div>
       <div className="mt-24 px-4 md:px-8 xl:px-32 2xl:px-64">
         <h1 className="text-2xl">New Products</h1>
