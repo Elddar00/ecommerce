@@ -23,7 +23,7 @@ export const useCartStore = create<CartState>((set) => ({
   getCart: async (wixClient) => {
     try {
       const isAuthenticated = await wixClient.auth.loggedIn();
-      console.log("Is user authenticated:", isAuthenticated);
+      // console.log("Is user authenticated:", isAuthenticated);
 
       if (!isAuthenticated) {
         set({ cart: { lineItems: [] }, isLoading: false, counter: 0 });
@@ -31,7 +31,7 @@ export const useCartStore = create<CartState>((set) => ({
       }
 
       const cart = await wixClient.currentCart.getCurrentCart();
-      console.log("Cart data:", cart);
+      // console.log("Cart data:", cart);
 
       set({
         cart: cart || { lineItems: [] }, // Osiguranje da cart ima lineItems
