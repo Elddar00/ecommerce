@@ -3,60 +3,44 @@ import { currentCart } from "@wix/ecom";
 import { WixClient } from "@/context/wixContext";
 
 type CartState = {
-  cart: currentCart.Cart;
+  cart: currentCart.Cart | null; // Ako je cart može biti null
   isLoading: boolean;
   counter: number;
-  getCart: (wixClient: WixClient) => void;
+  getCart: (wixClient: WixClient) => Promise<void>; // Promenjen tip na Promise<void>
   addItem: (
     wixClient: WixClient,
     productId: string,
     variantId: string,
     quantity: number
-  ) => void;
-  removeItem: (wixClient: WixClient, itemId: string) => void;
+  ) => Promise<void>; // Dodan Promise<void> za asinkroni rad
+  removeItem: (wixClient: WixClient, itemId: string) => Promise<void>; // Dodan Promise<void>
 };
 
-// const useStore = create<CartState>((set) => ({
-//   cart: [],
-//   isLoading: true,
-//   counter: 0,
-//   getCart: async (wixClient) => {
-//     const cart = await wixClient.currentCart.getCurrentCart();
-//   },
-//   addItem: async (wixClient) => {},
-//   removeItem: async (wixClient) => {},
-// }));
-
 export const useCartStore = create<CartState>((set) => ({
-  cart: currentCart,
+  cart: { lineItems: [] }, // Inicijalizacija sa praznom korpom
   isLoading: true,
   counter: 0,
   getCart: async (wixClient) => {
     try {
-      // Proveri da li je korisnik prijavljen
-      const isAuthenticated = await wixClient.auth.loggedIn(); // Prilagodi proveru autentifikacije
+      const isAuthenticated = await wixClient.auth.loggedIn();
+      console.log("Is user authenticated:", isAuthenticated);
 
       if (!isAuthenticated) {
-        {
-          //@ts-ignore
-          set({ cart: [], isLoading: false, counter: 0 });
-        }
+        set({ cart: { lineItems: [] }, isLoading: false, counter: 0 });
         return;
       }
 
-      // Preuzmi korpu
       const cart = await wixClient.currentCart.getCurrentCart();
+      console.log("Cart data:", cart);
+
       set({
-        cart: cart || [],
+        cart: cart || { lineItems: [] }, // Osiguranje da cart ima lineItems
         isLoading: false,
-        counter: cart?.lineItems.length || 0,
+        counter: cart && cart.lineItems ? cart.lineItems.length : 0,
       });
     } catch (err) {
-      console.error("Greška prilikom preuzimanja korpe:", err);
-      {
-        //@ts-ignore
-        set({ cart: [], isLoading: false, counter: 0 });
-      }
+      console.error("Error fetching cart data:", err);
+      set({ cart: { lineItems: [] }, isLoading: false, counter: 0 });
     }
   },
   addItem: async (wixClient, productId, variantId, quantity) => {
@@ -81,7 +65,7 @@ export const useCartStore = create<CartState>((set) => ({
         isLoading: false,
       });
     } catch (err) {
-      console.error("Greška prilikom dodavanja stavke u korpu:", err);
+      console.error("Error adding item to cart:", err);
       set((state) => ({ ...state, isLoading: false }));
     }
   },
@@ -97,7 +81,7 @@ export const useCartStore = create<CartState>((set) => ({
         isLoading: false,
       });
     } catch (err) {
-      console.error("Greška prilikom uklanjanja stavke iz korpe:", err);
+      console.error("Error removing item from cart:", err);
       set((state) => ({ ...state, isLoading: false }));
     }
   },
