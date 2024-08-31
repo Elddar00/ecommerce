@@ -4,8 +4,12 @@ import Link from "next/link";
 
 const CategoryList = async () => {
   const wixClient = await wixClientServer();
-
   const cats = await wixClient.collections.queryCollections().find();
+
+  // Provera da li cats.items postoji pre mapiranja
+  if (!cats.items || cats.items.length === 0) {
+    return <p>No categories found.</p>;
+  }
 
   return (
     <div className="px-4 overflow-x-scroll scrollbar-hide">
