@@ -7,6 +7,8 @@ const CategoryList = async () => {
     const wixClient = await wixClientServer();
     const cats = await wixClient.collections.queryCollections().find();
 
+    // console.log(cats.items);
+
     return (
       <div className="px-4 overflow-x-scroll scrollbar-hide">
         <div className="flex gap-4 md:gap-8">
@@ -18,7 +20,7 @@ const CategoryList = async () => {
             >
               <div className="relative bg-slate-100 w-full h-96">
                 <Image
-                  src={item.media?.mainMedia?.image?.url || "cat.png"}
+                  src={item.media?.mainMedia?.image?.url || "/category.png"}
                   alt={item.name || "Category Image"}
                   fill
                   sizes="20vw"
