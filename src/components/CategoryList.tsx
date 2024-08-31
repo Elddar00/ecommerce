@@ -1,13 +1,18 @@
 import { wixClientServer } from "@/lib/wixClientServer";
-import Image from "next/image";
 import Link from "next/link";
 
 const CategoryList = async () => {
-  const wixClient = await wixClientServer();
-  const cats = await wixClient.collections.queryCollections().find();
+  let cats;
+  try {
+    const wixClient = await wixClientServer();
+    cats = await wixClient.collections.queryCollections().find();
+  } catch (error) {
+    console.error("Error fetching categories:", error);
+    return <p>Error loading categories.</p>;
+  }
 
   // Provera da li cats.items postoji pre mapiranja
-  if (!cats.items || cats.items.length === 0) {
+  if (!cats || !cats.items || cats.items.length === 0) {
     return <p>No categories found.</p>;
   }
 
@@ -21,12 +26,10 @@ const CategoryList = async () => {
             key={item._id}
           >
             <div className="relative bg-slate-100 w-full h-96">
-              <Image
-                src={item.media?.mainMedia?.image?.url || "cat.png"}
+              <img
+                src={item.media?.mainMedia?.image?.url || "/category.png"}
                 alt=""
-                fill
-                sizes="20vw"
-                className="object-cover"
+                className="object-cover w-full h-full"
               />
             </div>
             <h1 className="mt-8 font-light text-xl tracking-wide">
