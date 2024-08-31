@@ -28,8 +28,13 @@ const LoginPage = () => {
   useEffect(() => {
     // Check login status and redirect if already logged in
     const checkLoginStatus = async () => {
-      if (wixClient.auth.loggedIn()) {
-        router.push("/");
+      try {
+        const isLoggedIn = await wixClient.auth.loggedIn();
+        if (isLoggedIn) {
+          router.push("/");
+        }
+      } catch (error) {
+        console.error("Error checking login status:", error);
       }
     };
 
