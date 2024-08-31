@@ -8,7 +8,7 @@ import { WixClientContext } from "@/context/wixContext";
 import { useWixClient } from "@/hooks/useWixClient";
 import { wixClientServer } from "@/lib/wixClientServer";
 
-const HomePage = async () => {
+const HomePage = () => {
   // const wixClient = useWixClient();
 
   // useEffect(() => {
