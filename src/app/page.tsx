@@ -27,6 +27,7 @@ const HomePage = async () => {
   // const res = await wixClient.products.queryProducts().find();
 
   // console.log(res);
+  //test
 
   return (
     <div className="">
