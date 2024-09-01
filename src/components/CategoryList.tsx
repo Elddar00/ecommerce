@@ -7,7 +7,7 @@ const CategoryList = async () => {
   try {
     const wixClient = await wixClientServer();
     cats = await wixClient.collections.queryCollections().find();
-    console.log("Fetched categories:", cats);
+    // console.log("Fetched categories:", cats);
   } catch (error) {
     console.error("Error fetching categories:", error);
     return <p>Error loading categories.</p>;
