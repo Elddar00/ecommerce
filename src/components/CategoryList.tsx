@@ -1,4 +1,5 @@
 import { wixClientServer } from "@/lib/wixClientServer";
+import Image from "next/image";
 import Link from "next/link";
 
 const CategoryList = async () => {
@@ -6,6 +7,7 @@ const CategoryList = async () => {
   try {
     const wixClient = await wixClientServer();
     cats = await wixClient.collections.queryCollections().find();
+    // console.log("Fetched categories:", cats);
   } catch (error) {
     console.error("Error fetching categories:", error);
     return <p>Error loading categories.</p>;
@@ -26,10 +28,13 @@ const CategoryList = async () => {
             key={item._id}
           >
             <div className="relative bg-slate-100 w-full h-96">
-              <img
-                src={item.media?.mainMedia?.image?.url || "/category.png"}
-                alt=""
-                className="object-cover w-full h-full"
+              {/* Prikazuje samo /category.png */}
+              <Image
+                src="/category.png"
+                alt="Category image"
+                fill
+                sizes="20vw"
+                className="object-cover"
               />
             </div>
             <h1 className="mt-8 font-light text-xl tracking-wide">
