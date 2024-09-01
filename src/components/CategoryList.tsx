@@ -3,20 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CategoryList = async () => {
-  let cats;
-  try {
-    const wixClient = await wixClientServer();
-    cats = await wixClient.collections.queryCollections().find();
-    // console.log("Fetched categories:", cats);
-  } catch (error) {
-    console.error("Error fetching categories:", error);
-    return <p>Error loading categories.</p>;
-  }
+  const wixClient = await wixClientServer();
 
-  // Provera da li cats.items postoji pre mapiranja
-  if (!cats || !cats.items || cats.items.length === 0) {
-    return <p>No categories found.</p>;
-  }
+  const cats = await wixClient.collections.queryCollections().find();
 
   return (
     <div className="px-4 overflow-x-scroll scrollbar-hide">

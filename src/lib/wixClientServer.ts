@@ -1,21 +1,16 @@
-import { createClient, OAuthStrategy } from "@wix/sdk";
-import { products, collections } from "@wix/stores";
+import { OAuthStrategy, createClient } from "@wix/sdk";
+import { collections, products } from "@wix/stores";
 import { orders } from "@wix/ecom";
 import { cookies } from "next/headers";
 import { members } from "@wix/members";
 
 export const wixClientServer = async () => {
-  let refreshToken = null;
+  let refreshToken;
 
   try {
     const cookieStore = cookies();
-    const refreshTokenCookie = cookieStore.get("refreshToken");
-    if (refreshTokenCookie) {
-      refreshToken = JSON.parse(refreshTokenCookie.value || "{}");
-    }
-  } catch (e) {
-    console.error("Greška pri preuzimanju kolačića:", e);
-  }
+    refreshToken = JSON.parse(cookieStore.get("refreshToken")?.value || "{}");
+  } catch (e) {}
 
   const wixClient = createClient({
     modules: {
