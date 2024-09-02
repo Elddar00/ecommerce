@@ -1,33 +1,23 @@
-// "use client";
-
 import CategoryList from "@/components/CategoryList";
 import ProductList from "@/components/ProductList";
 import Skeleton from "@/components/Skeleton";
 import Slider from "@/components/Slider";
-import { WixClientContext } from "@/context/wixContext";
-import { useWixClient } from "@/hooks/useWixClient";
 import { wixClientServer } from "@/lib/wixClientServer";
-import { Suspense, useContext, useEffect } from "react";
+import { Suspense } from "react";
 
 const HomePage = async () => {
-  // const wixClient = useWixClient();
+  // Preuzmite podatke sa servera
+  const wixClient = await wixClientServer();
+  const catsResponse = await wixClient.collections.queryCollections().find();
+  const cats = catsResponse.items;
 
-  // useEffect(() => {
-  // const getProducts = async () => {
-  //   const res = await wixClient.products.queryProducts().find();
-
-  //     console.log(res);
-  //   };
-
-  //   getProducts();
-  // }, [wixClient]);
-
-  // const wixClient = await wixClientServer();
-
-  // const res = await wixClient.products.queryProducts().find();
-
-  // console.log(res);
-  //test
+  // Konvertovanje Collection[] u Category[]
+  const categories = cats.map((item) => ({
+    _id: item._id || "", // Pretvorite u string ako je null
+    slug: item.slug || "", // Pretvorite u string ako je null
+    name: item.name,
+    media: item.media,
+  }));
 
   return (
     <div className="">
@@ -46,7 +36,7 @@ const HomePage = async () => {
           Categories
         </h1>
         <Suspense fallback={<Skeleton />}>
-          <CategoryList />
+          <CategoryList cats={categories} />
         </Suspense>
       </div>
       <div className="mt-24 px-4 md:px-8 xl:px-32 2xl:px-64">
