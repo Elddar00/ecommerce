@@ -1,38 +1,16 @@
-import { GetServerSideProps } from "next";
 import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
 import Link from "next/link";
 
-// Interfejs za kategorije
-interface Category {
-  _id: string;
-  slug: string;
-  name: string;
-  media?: {
-    mainMedia?: {
-      image?: {
-        url: string;
-      };
-    };
-  };
-}
-
-export const getServerSideProps: GetServerSideProps = async () => {
+const CategoryList = async () => {
   const wixClient = await wixClientServer();
+
   const cats = await wixClient.collections.queryCollections().find();
 
-  return {
-    props: {
-      cats: cats.items as Category[], // Konverzija u niz tipa Category
-    },
-  };
-};
-
-const CategoryList = ({ cats }: { cats: Category[] }) => {
   return (
     <div className="px-4 overflow-x-scroll scrollbar-hide">
       <div className="flex gap-4 md:gap-8">
-        {cats.map((item) => (
+        {cats.items.map((item) => (
           <Link
             href={`/list?cat=${item.slug}`}
             className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/4 xl:w-1/6"
