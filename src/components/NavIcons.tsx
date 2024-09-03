@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import CartModal from "./CartModal";
 import { useWixClient } from "@/hooks/useWixClient";
+import Cookies from "js-cookie";
 import { useCartStore } from "@/hooks/useCartStore";
 
 const NavIcons = () => {
@@ -15,13 +16,13 @@ const NavIcons = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
-  // const pathName = usePathname();
+  const pathName = usePathname();
 
-  // const wixClient = useWixClient();
-  // const isLoggedIn = wixClient.auth.loggedIn();
+  const wixClient = useWixClient();
+  const isLoggedIn = wixClient.auth.loggedIn();
 
   // temp
-  const isLoggedIn = false;
+  // const isLoggedIn = false;
 
   const handleProfile = () => {
     if (!isLoggedIn) {
@@ -33,23 +34,23 @@ const NavIcons = () => {
 
   // AUTH WITH WIX-MANAGED AUTH
 
-  const wixClient = useWixClient();
+  // const wixClient = useWixClient();
 
-  const login = async () => {
-    const loginRequestData = wixClient.auth.generateOAuthData(
-      "https://grand-swan-4a6621.netlify.app"
-    );
+  // const login = async () => {
+  //   const loginRequestData = wixClient.auth.generateOAuthData(
+  //     "http://localhost:3000"
+  //   );
 
-    console.log(loginRequestData);
+  //   console.log(loginRequestData);
 
-    localStorage.setItem("oAuthRedirectData", JSON.stringify(loginRequestData));
-    const { authUrl } = await wixClient.auth.getAuthUrl(loginRequestData);
-    window.location.href = authUrl;
-  };
+  //   localStorage.setItem("oAuthRedirectData", JSON.stringify(loginRequestData));
+  //   const { authUrl } = await wixClient.auth.getAuthUrl(loginRequestData);
+  //   window.location.href = authUrl;
+  // };
 
   const handleLogout = async () => {
     setIsLoading(true);
-    // Cookies.remove("refreshToken");
+    Cookies.remove("refreshToken");
     const { logoutUrl } = await wixClient.auth.logout(window.location.href);
     setIsLoading(false);
     setIsProfileOpen(false);
@@ -70,8 +71,8 @@ const NavIcons = () => {
         width={22}
         height={22}
         className="cursor-pointer"
-        // onClick={handleProfile}
-        onClick={login}
+        onClick={handleProfile}
+        // onClick={login}
       />
       {isProfileOpen && (
         <div className="absolute p-4 rounded-md top-12 left-0 bg-white text-sm shadow-[0_3px_10px_rgb(0,0,0,0.2)] z-20">
