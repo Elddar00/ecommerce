@@ -1,19 +1,29 @@
+// pages/list.js
 import Filter from "@/components/Filter";
 import ProductList from "@/components/ProductList";
 import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
-import { Suspense } from "react";
 
-const ListPage = async ({ searchParams }: { searchParams: any }) => {
+export async function getServerSideProps(context: any) {
+  const { searchParams } = context.query;
   const wixClient = await wixClientServer();
 
   const cat = await wixClient.collections.getCollectionBySlug(
     searchParams.cat || "all-products"
   );
 
+  return {
+    props: {
+      category: cat?.collection || null,
+      searchParams: searchParams || {},
+    },
+  };
+}
+
+const ListPage = ({ category, searchParams }: any) => {
   return (
     <div className="px-4 md:px-8 xl:px-32 2xl:px-64 relative">
-      {/* CAMPAING */}
+      {/* CAMPAIGN */}
       <div className="hidden bg-pink-50 px-4 sm:flex justify-between h-64">
         <div className="w-2/3 flex flex-col items-center justify-center gap-8">
           <h1 className="text-4xl font-semibold leading-[48px] text-gray-700">
@@ -32,16 +42,12 @@ const ListPage = async ({ searchParams }: { searchParams: any }) => {
       <Filter />
       {/* PRODUCTS */}
       <h1 className="mt-12 text-xl font-semibold">
-        {cat?.collection?.name} For You
+        {category?.name || "Products"} For You
       </h1>
-      <Suspense fallback={"loading..."}>
-        <ProductList
-          categoryId={
-            cat.collection?._id || "00000000-000000-000000-000000000001"
-          }
-          searchParams={searchParams}
-        />
-      </Suspense>
+      <ProductList
+        categoryId={category?._id || "00000000-000000-000000-000000000001"}
+        searchParams={searchParams}
+      />
     </div>
   );
 };
