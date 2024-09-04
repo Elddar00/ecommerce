@@ -19,7 +19,7 @@ const ProductList = async ({
   try {
     console.log("Fetching wixClient...");
     const wixClient = await wixClientServer();
-    console.log("Wix Client:", wixClient);
+    // console.log("Wix Client:", wixClient);
 
     let productQuery = wixClient.products
       .queryProducts()

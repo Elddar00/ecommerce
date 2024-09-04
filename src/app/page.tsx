@@ -13,8 +13,8 @@ const HomePage = async () => {
   // const wixClient = useWixClient();
 
   // useEffect(() => {
-  //   const getProducts = async () => {
-  //     const res = await wixClient.products.queryProducts().find();
+  // const getProducts = async () => {
+  //   const res = await wixClient.products.queryProducts().find();
 
   //     console.log(res);
   //   };

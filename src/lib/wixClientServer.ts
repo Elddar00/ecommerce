@@ -11,11 +11,11 @@ export const wixClientServer = async () => {
     // Proveri i loguj vrednost `refreshToken` iz kolačića
     const cookieStore = cookies();
     const refreshTokenCookie = cookieStore.get("refreshToken");
-    console.log("Refresh Token Cookie:", refreshTokenCookie);
+    // console.log("Refresh Token Cookie:", refreshTokenCookie);
 
     if (refreshTokenCookie) {
       refreshToken = JSON.parse(refreshTokenCookie.value || "{}");
-      console.log("Parsed Refresh Token:", refreshToken);
+      // console.log("Parsed Refresh Token:", refreshToken);
     } else {
       console.log("No refresh token found in cookies.");
     }
@@ -24,8 +24,7 @@ export const wixClientServer = async () => {
   }
 
   try {
-    // Proveri i loguj vrednost `NEXT_PUBLIC_WIX_CLIENT_ID`
-    console.log("Client ID:", process.env.NEXT_PUBLIC_WIX_CLIENT_ID);
+    // console.log("Client ID:", process.env.NEXT_PUBLIC_WIX_CLIENT_ID);
 
     // Kreiraj Wix klijent
     const wixClient = createClient({
@@ -48,6 +47,6 @@ export const wixClientServer = async () => {
     return wixClient;
   } catch (e) {
     console.error("Error creating Wix client:", e);
-    throw e; // Ponovo baca grešku nakon logovanja
+    throw e;
   }
 };
