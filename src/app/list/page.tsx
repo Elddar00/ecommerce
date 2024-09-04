@@ -1,26 +1,26 @@
-// pages/list.js
 import Filter from "@/components/Filter";
 import ProductList from "@/components/ProductList";
 import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
+import { cookies } from "next/headers"; // Uvezi cookies ako koristiš ih za asinhrone operacije
 
-export async function getServerSideProps(context: any) {
-  const { searchParams } = context.query;
+// Funkcija za dohvatanje podataka sa servera
+async function fetchCategoryData(cat: string) {
   const wixClient = await wixClientServer();
-
-  const cat = await wixClient.collections.getCollectionBySlug(
-    searchParams.cat || "all-products"
+  const category = await wixClient.collections.getCollectionBySlug(
+    cat || "all-products"
   );
-
-  return {
-    props: {
-      category: cat?.collection || null,
-      searchParams: searchParams || {},
-    },
-  };
+  return category;
 }
 
-const ListPage = ({ category, searchParams }: any) => {
+export default async function ListPage({
+  searchParams,
+}: {
+  searchParams: any;
+}) {
+  // Dohvatanje podataka
+  const category = await fetchCategoryData(searchParams.cat);
+
   return (
     <div className="px-4 md:px-8 xl:px-32 2xl:px-64 relative">
       {/* CAMPAIGN */}
@@ -42,14 +42,15 @@ const ListPage = ({ category, searchParams }: any) => {
       <Filter />
       {/* PRODUCTS */}
       <h1 className="mt-12 text-xl font-semibold">
-        {category?.name || "Products"} For You
+        {category?.collection?.name || "Products"} For You
       </h1>
+      {/* Ako ProductList koristi asinhrone podatke, nema potrebe za Suspense */}
       <ProductList
-        categoryId={category?._id || "00000000-000000-000000-000000000001"}
+        categoryId={
+          category.collection?._id || "00000000-000000-000000-000000000001"
+        }
         searchParams={searchParams}
       />
     </div>
   );
-};
-
-export default ListPage;
+}
