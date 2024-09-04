@@ -4,6 +4,8 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { WixClientContextProvider } from "@/context/wixContext";
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "E-Commerce Application",
   description: "A complete e-commerce application with Next.js and Wix",
