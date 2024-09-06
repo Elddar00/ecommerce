@@ -43,10 +43,10 @@ export const wixClientServer = async () => {
       }),
     });
 
-    console.log("Wix Client created successfully");
+    // console.log("Wix Client created successfully");
     return wixClient;
   } catch (e) {
-    console.error("Error creating Wix client:", e);
+    // console.error("Error creating Wix client:", e);
     throw e;
   }
 };

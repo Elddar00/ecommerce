@@ -22,7 +22,8 @@ const Menu = () => {
     <div className="relative">
       {isCartOpen && <CartModal />}
 
-      <div className="flex justify-between items-center gap-6">
+      {/* Navbar section */}
+      <div className="flex justify-between items-center gap-6 bg-white z-40 relative">
         <div
           className="relative cursor-pointer"
           onClick={() => setIsCartOpen((prev) => !prev)}
@@ -42,10 +43,14 @@ const Menu = () => {
         />
       </div>
 
+      {/* Menu section */}
       {open && (
-        <div className="absolute bg-black text-white left-0 top-20 w-full h-[calc(100vh-80px)] flex flex-col items-center justify-center gap-8 text-xl z-20">
-          <Link href="/">Homepage</Link>
-          <Link href="/">Shop</Link>
+        <div className="fixed left-0 top-16 w-full h-[calc(100vh-64px)] bg-black text-white flex flex-col items-center justify-center gap-8 text-xl z-30">
+          {/* Links in the menu */}
+          {/* <Link href="https://grand-swan-4a6621.netlify.app/">Homepage</Link> */}
+          {/* <Link href="https://grand-swan-4a6621.netlify.app/list?cat=all-products"> */}
+          Shop
+          {/* </Link> */}
           <Link href="/">Deals</Link>
           <Link href="/">About</Link>
           <Link href="/">Contact</Link>
