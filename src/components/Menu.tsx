@@ -47,10 +47,10 @@ const Menu = () => {
       {open && (
         <div className="fixed left-0 top-16 w-full h-[calc(100vh-64px)] bg-black text-white flex flex-col items-center justify-center gap-8 text-xl z-30">
           {/* Links in the menu */}
-          {/* <Link href="https://grand-swan-4a6621.netlify.app/">Homepage</Link> */}
-          {/* <Link href="https://grand-swan-4a6621.netlify.app/list?cat=all-products"> */}
-          Shop
-          {/* </Link> */}
+          <Link href="https://grand-swan-4a6621.netlify.app/">Homepage</Link>
+          <Link href="https://grand-swan-4a6621.netlify.app/list?cat=all-products">
+            Shop
+          </Link>
           <Link href="/">Deals</Link>
           <Link href="/">About</Link>
           <Link href="/">Contact</Link>
