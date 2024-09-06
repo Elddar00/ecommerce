@@ -18,6 +18,8 @@ const Menu = () => {
     getCart(wixClient);
   }, [wixClient, getCart]);
 
+  const closeMenu = () => setOpen(false);
+
   return (
     <div className="relative">
       {isCartOpen && <CartModal />}
@@ -47,15 +49,33 @@ const Menu = () => {
       {open && (
         <div className="fixed left-0 top-16 w-full h-[calc(100vh-64px)] bg-black text-white flex flex-col items-center justify-center gap-8 text-xl z-30">
           {/* Links in the menu */}
-          <Link href="https://grand-swan-4a6621.netlify.app/">Homepage</Link>
-          <Link href="https://grand-swan-4a6621.netlify.app/list?cat=all-products">
+          <Link
+            href="https://grand-swan-4a6621.netlify.app/"
+            onClick={closeMenu}
+          >
+            Homepage
+          </Link>
+          <Link
+            href="https://grand-swan-4a6621.netlify.app/list?cat=all-products"
+            onClick={closeMenu}
+          >
             Shop
           </Link>
-          <Link href="/">Deals</Link>
-          <Link href="/">About</Link>
-          <Link href="/">Contact</Link>
-          <Link href="/">Logout</Link>
-          <Link href="/">Cart({counter})</Link>
+          <Link href="/" onClick={closeMenu}>
+            Deals
+          </Link>
+          <Link href="/" onClick={closeMenu}>
+            About
+          </Link>
+          <Link href="/" onClick={closeMenu}>
+            Contact
+          </Link>
+          <Link href="/" onClick={closeMenu}>
+            Logout
+          </Link>
+          <Link href="/" onClick={closeMenu}>
+            Cart({counter})
+          </Link>
         </div>
       )}
     </div>
