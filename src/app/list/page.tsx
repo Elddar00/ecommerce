@@ -2,9 +2,8 @@ import Filter from "@/components/Filter";
 import ProductList from "@/components/ProductList";
 import { wixClientServer } from "@/lib/wixClientServer";
 import Image from "next/image";
-import { cookies } from "next/headers"; // Uvezi cookies ako koristiš ih za asinhrone operacije
+import { cookies } from "next/headers";
 
-// Funkcija za dohvatanje podataka sa servera
 async function fetchCategoryData(cat: string) {
   const wixClient = await wixClientServer();
   const category = await wixClient.collections.getCollectionBySlug(

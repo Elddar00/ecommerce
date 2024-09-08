@@ -96,8 +96,6 @@ const LoginPage = () => {
           break;
       }
 
-      console.log(response);
-
       switch (response?.loginState) {
         case LoginState.SUCCESS:
           setMessage("Successful! You are being redirected.");
