@@ -14,50 +14,47 @@ const OrderPage = async ({ params }: { params: { id: string } }) => {
     return notFound();
   }
 
-  console.log(order);
+  // console.log(order);
 
   return (
     <div className="flex flex-col h-[calc(100vh-180px)] items-center justify-center">
-      <h1 className="text-xl">Order Details</h1>
+      <h1 className="text-xl">Detalji Porudzbine</h1>
       <div className="mt-12 flex flex-col gap-6">
         <div className="">
-          <span className="font-medium">Order Id: </span>
+          <span className="font-medium">Id Porudzbine: </span>
           <span>{order._id}</span>
         </div>
         <div className="">
-          <span className="font-medium">Receiver Name: </span>
+          <span className="font-medium">Ime Primaoca: </span>
           <span>
             {order.billingInfo?.contactDetails?.firstName + " "}
             {order.billingInfo?.contactDetails?.lastName}
           </span>
         </div>
         <div className="">
-          <span className="font-medium">Receiver E-mail: </span>
+          <span className="font-medium">E-mail: </span>
           <span>{order.buyerInfo?.email}</span>
         </div>
         <div className="">
-          <span className="font-medium">Price: </span>
+          <span className="font-medium">Cena: </span>
           <span>{order.priceSummary?.subtotal?.amount}</span>
         </div>
         <div className="">
-          <span className="font-medium">Payment Status: </span>
+          <span className="font-medium">Status Placanja: </span>
           <span>{order.paymentStatus}</span>
         </div>
         <div className="">
-          <span className="font-medium">Order Status: </span>
+          <span className="font-medium">Status Porudzbine: </span>
           <span>{order.status}</span>
         </div>
         <div className="">
-          <span className="font-medium">Delivery Address: </span>
+          <span className="font-medium">Adresa: </span>
           <span>
             {order.billingInfo?.address?.addressLine1 + " "}
             {order.billingInfo?.address?.city}
           </span>
         </div>
       </div>
-      <Link href="/" className="underline mt-6">
-        Have a problem? Contact Us
-      </Link>
     </div>
   );
 };
