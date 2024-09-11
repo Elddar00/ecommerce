@@ -21,7 +21,7 @@ const OrderPage = async ({ params }: { params: { id: string } }) => {
       <h1 className="text-xl">Detalji Porudzbine</h1>
       <div className="mt-12 flex flex-col gap-6">
         <div className="">
-          <span className="font-medium">Id Porudzbine: </span>
+          <span className="font-medium">Id: </span>
           <span>{order._id}</span>
         </div>
         <div className="">
