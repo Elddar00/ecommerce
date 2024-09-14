@@ -35,9 +35,6 @@ const ProductList = async ({
         : 0
     );
 
-  // Debugging
-  // console.log("Search Parameters:", searchParams);
-
   if (searchParams?.sort) {
     const [sortType, sortBy] = searchParams.sort.split(" ");
 
@@ -49,9 +46,6 @@ const ProductList = async ({
   }
 
   const res = await productQuery.find();
-
-  // Debugging
-  // console.log("Query Result:", res);
 
   return (
     <div className="mt-12 flex gap-x-8 gap-y-16 justify-between flex-wrap">

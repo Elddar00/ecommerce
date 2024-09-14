@@ -43,7 +43,6 @@ export default async function ListPage({
       <h1 className="mt-12 text-xl font-semibold">
         {category?.collection?.name || "Products"} For You
       </h1>
-      {/* Ako ProductList koristi asinhrone podatke, nema potrebe za Suspense */}
       <ProductList
         categoryId={
           category.collection?._id || "00000000-000000-000000-000000000001"

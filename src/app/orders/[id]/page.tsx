@@ -14,16 +14,10 @@ const OrderPage = async ({ params }: { params: { id: string } }) => {
     return notFound();
   }
 
-  // console.log(order);
-
   return (
     <div className="flex flex-col h-[calc(100vh-180px)] items-center justify-center">
       <h1 className="text-xl">Detalji Porudzbine</h1>
       <div className="mt-12 flex flex-col gap-6">
-        {/* <div className="">
-          <span className="font-medium">Id: </span>
-          <span>{order._id}</span>
-        </div> */}
         <div className="">
           <span className="font-medium">Ime i Prezime: </span>
           <span>
