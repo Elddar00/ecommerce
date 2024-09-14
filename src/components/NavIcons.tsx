@@ -21,9 +21,6 @@ const NavIcons = () => {
   const wixClient = useWixClient();
   const isLoggedIn = wixClient.auth.loggedIn();
 
-  // temp
-  // const isLoggedIn = false;
-
   const handleProfile = () => {
     if (!isLoggedIn) {
       router.push("/login");

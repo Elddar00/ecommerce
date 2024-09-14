@@ -7,8 +7,6 @@ import { media as wixMedia } from "@wix/sdk";
 import Image from "next/image";
 
 const CartModal = () => {
-  // const cartItems = true;
-
   const wixClient = useWixClient();
 
   const { cart, isLoading, removeItem } = useCartStore();
