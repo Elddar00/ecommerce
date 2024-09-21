@@ -46,7 +46,7 @@ const CartModal = () => {
         <div>Cart is Empty</div>
       ) : (
         <>
-          <h2 className="text-xl">Shopping Cart</h2>
+          <h2 className="text-xl">Korpa</h2>
           {/* LIST */}
           <div className="flex flex-col gap-8">
             {/* ITEM */}
@@ -90,13 +90,13 @@ const CartModal = () => {
                   </div>
                   {/* BOTTOM */}
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Qty. {item.quantity}</span>
+                    <span className="text-gray-500">Kol. {item.quantity}</span>
                     <span
                       className="text-blue-500"
                       style={{ cursor: isLoading ? "not-allowed" : "pointer" }}
                       onClick={() => removeItem(wixClient, item._id!)}
                     >
-                      Remove
+                      Ukloni
                     </span>
                   </div>
                 </div>
@@ -106,14 +106,14 @@ const CartModal = () => {
           {/* BOTTOM */}
           <div className="">
             <div className="flex items-center justify-between font-semibold">
-              <span className="">Subtotal</span>
+              <span className="">Ukupno</span>
               {
                 //@ts-ignore
                 <span className="">RSD {cart.subtotal?.amount}</span>
               }
             </div>
             <p className="text-gray-500 text-sm mt-2 mb-4">
-              Shipping and taxes calculated at checkout.
+              Dostava i takse bice uracunati
             </p>
             <div className="flex justify-end text-sm">
               <button
@@ -121,7 +121,7 @@ const CartModal = () => {
                 disabled={isLoading}
                 onClick={handleCheckout}
               >
-                Checkout
+                Zavrsi kupovinu
               </button>
             </div>
           </div>
