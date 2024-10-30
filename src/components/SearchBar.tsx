@@ -2,9 +2,12 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useRef } from "react";
 
 const SearchBar = () => {
   const router = useRouter();
+  const inputRef = useRef<HTMLInputElement>(null);
+
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -12,6 +15,9 @@ const SearchBar = () => {
 
     if (name) {
       router.push(`/list?name=${name}`);
+      if (inputRef.current) {
+        inputRef.current.value = "";
+      }
     }
   };
 
@@ -24,9 +30,10 @@ const SearchBar = () => {
         type="text"
         name="name"
         placeholder="Search"
+        ref={inputRef} // Dodaj ref na input
         className="flex-1 bg-transparent outline-none"
       />
-      <button className="cursor-pointer">
+      <button type="submit" className="cursor-pointer">
         <Image src="/search.png" alt="" width={16} height={16} />
       </button>
     </form>
