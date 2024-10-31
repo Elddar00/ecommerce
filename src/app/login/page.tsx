@@ -103,7 +103,7 @@ const LoginPage = () => {
             response.data.sessionToken!
           );
 
-          console.log(tokens);
+          // console.log(tokens);
 
           Cookies.set("refreshToken", JSON.stringify(tokens.refreshToken), {
             expires: 2,
